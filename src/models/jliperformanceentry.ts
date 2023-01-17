@@ -51,7 +51,7 @@ export default class JLIPerformanceEntry {
         }
 
         if (this.statevalues) {
-            for (let key in this.statevalues.keys()) {
+            for (let key of this.statevalues.keys()) {
                 queryitems.push(encodeURIComponent(key) + '=' + encodeURIComponent(this.statevalues.get(key) as string));
             }
         }

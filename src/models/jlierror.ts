@@ -57,13 +57,13 @@ export default class JLIError {
                 logobject.user = me.user;
 
                 if (me.extravalues) {
-                    for (let key in me.extravalues.keys()) {
+                    for (let key of me.extravalues.keys()) {
                         logobject[key] = me.extravalues.get(key);
                     }
                 }
 
                 if (me.statevalues) {
-                    for (let key in me.statevalues.keys()) {
+                    for (let key of me.statevalues.keys()) {
                         logobject[key] = me.statevalues.get(key);
                     }
                 }

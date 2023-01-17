@@ -13,7 +13,9 @@ export default class Logger {
 
     constructor(token: string) {
         this.token = token;
-        if (!this.token) throw 'No logging token provided';
+        if (!this.token) {
+            console.log('No token was provided for the justlogit logger.  Logging will not function.');
+        }
 
         this.appactionlist = new AppActionList(this.token, 60);
     }
@@ -123,8 +125,11 @@ export default class Logger {
     async logAppAction(name: string, pid: string | null, timing: number) {
         const me = this;
         return new Promise(async (success, failure) => {
-            const appactionitem = new JLIAppAction(name, timing, pid);
-            me.appactionlist.addaction(appactionitem);
+            if (me.token) {
+                const appactionitem = new JLIAppAction(name, timing, pid);
+                me.appactionlist.addaction(appactionitem);
+            }
+            
             success(null);
         });
     }
