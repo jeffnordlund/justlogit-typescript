@@ -1,0 +1,26 @@
+{
+  "name": "@justlogit/typescript",
+  "version": "1.0.0",
+  "description": "Typescript package for the justlog.it logging library",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffnordlund/justlogit-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffnordlund/justlogit-typescript/issues"
+  },
+  "homepage": "https://github.com/jeffnordlund/justlogit-typescript#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  }
+}
