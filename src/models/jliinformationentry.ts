@@ -56,17 +56,8 @@ export default class JLIInformationEntry {
     }
 
     async log(loggingtoken: string) {
-        const me = this;
-        return new Promise(async (success, failure) => {
-            try {
-                // format the query string
-                const querystring = me.getquerystring();
-                await HttpInterface.get(loggingtoken, 'info', querystring);
-                success(null);
-            }
-            catch(e) {
-                failure(e);
-            }
-        });
+        // format the query string
+        const querystring = this.getquerystring();
+        await HttpInterface.get(loggingtoken, 'info', querystring);
     }
 }

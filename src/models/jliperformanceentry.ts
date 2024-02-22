@@ -60,17 +60,8 @@ export default class JLIPerformanceEntry {
     }
 
     async log(loggingtoken: string) {
-        const me = this;
-        return new Promise(async (success, failure) => {
-            try {
-                // format the query string
-                const querystring = me.getquerystring();
-                await HttpInterface.get(loggingtoken, 'perf', querystring);
-                success(null);
-            }
-            catch(e) {
-                failure(e);
-            }
-        });
+        // format the query string
+        const querystring = this.getquerystring();
+        await HttpInterface.get(loggingtoken, 'perf', querystring);
     }
 };

@@ -48,33 +48,24 @@ export default class JLIError {
     }
 
     async log(loggingtoken:string) {
-        const me = this;
-        return new Promise(async (success, failure) => {
-            try {
-                const logobject:any = {};
-                logobject.message = me.message;
-                logobject.stack = me.stack;
-                logobject.user = me.user;
+        const logobject:any = {};
+        logobject.message = this.message;
+        logobject.stack = this.stack;
+        logobject.user = this.user;
 
-                if (me.extravalues) {
-                    for (let key of me.extravalues.keys()) {
-                        logobject[key] = me.extravalues.get(key);
-                    }
-                }
-
-                if (me.statevalues) {
-                    for (let key of me.statevalues.keys()) {
-                        logobject[key] = me.statevalues.get(key);
-                    }
-                }
-
-                await HttpInterface.post(loggingtoken, 'error', logobject);
-                success(null);
+        if (this.extravalues) {
+            for (let key of this.extravalues.keys()) {
+                logobject[key] = this.extravalues.get(key);
             }
-            catch(e) {
-                failure(e);
+        }
+
+        if (this.statevalues) {
+            for (let key of this.statevalues.keys()) {
+                logobject[key] = this.statevalues.get(key);
             }
-        });
+        }
+
+        await HttpInterface.post(loggingtoken, 'error', logobject);
     }
 
 };

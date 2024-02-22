@@ -31,25 +31,17 @@ export default class JLIAppAction {
     }
 
     async log(loggingtoken: string, logginginterval: number) {
-        const me = this;
-        return new Promise(async (success, failure) => {
-            try {
-                const actioninstance:any = {};
-                actioninstance.name = me.name;
-                actioninstance.count = me.count;
-                actioninstance.timestamp = me.logstart.getTime();
-                actioninstance.interval = logginginterval;
-                actioninstance.processid = me.processid;
-                actioninstance.mintiming = me.mintiming;
-                actioninstance.maxtiming = me.maxtiming;
-                actioninstance.timing = me.timing;
 
-                await HttpInterface.post(loggingtoken, 'appaction', actioninstance);
-                success(null);
-            }
-            catch(e) {
-                failure(e);
-            }
-        });
+        const actioninstance:any = {};
+        actioninstance.name = this.name;
+        actioninstance.count = this.count;
+        actioninstance.timestamp = this.logstart.getTime();
+        actioninstance.interval = logginginterval;
+        actioninstance.processid = this.processid;
+        actioninstance.mintiming = this.mintiming;
+        actioninstance.maxtiming = this.maxtiming;
+        actioninstance.timing = this.timing;
+
+        await HttpInterface.post(loggingtoken, 'appaction', actioninstance);
     }
 };
