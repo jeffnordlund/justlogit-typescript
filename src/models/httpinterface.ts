@@ -67,13 +67,12 @@ export default class HttpInterface {
                 }
                 else {
                     // call failed
-                    throw 'Logging call failed';
+                    throw `Logging call failed.  status: ${status}  response: ${request}`;
                 }
             });
         });
 
         request.on('error', (err) => {
-            // failure(err);
             throw err;
         });
 

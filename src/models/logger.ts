@@ -20,7 +20,7 @@ export default class Logger {
         this.appactionlist = new AppActionList(this.token, 60);
     }
     
-    async logError(errorobject:any, user?:string | null, statevalues?: Array<StateValue> | null | undefined) {    
+    async logError(errorobject:any, user?:string | null, statevalues?: Array<StateValue> | object | null | undefined) {
         try {
             const token = this.token;
             if (token) {
@@ -28,11 +28,11 @@ export default class Logger {
                 erroritem.message = (errorobject.hasOwnProperty('message')) ? errorobject.message : null;
                 erroritem.stack = (errorobject.hasOwnProperty('stack')) ? errorobject.stack : null;
                 erroritem.user = (typeof user !== 'undefined' && user) ? user : null;
-            
+
                 if (typeof statevalues !== 'undefined' && statevalues) {
                     erroritem.addstatevalues(statevalues);
                 }
-            
+
                 // capture any other error values
                 for (let key in errorobject) {
                     erroritem.setvalue(key, errorobject[key]);

@@ -36,13 +36,20 @@ export default class JLIError {
         }
     }
 
-    addstatevalues(statevalues: Array<StateValue>) {
-        for (let i = 0; i < statevalues.length; i++) {
-            let key = statevalues[i].key;
-            let value = statevalues[i].value;
-
-            if (!this.statevalues.has(key) && !this.extravalues.has(key) && COMMON_PROPS.indexOf(key) === -1) {
-                this.statevalues.set(key, value);
+    addstatevalues(statevalues: Array<StateValue> | object) {
+        if (Array.isArray(statevalues)) {
+            for (const item of statevalues) {
+                const { key, value} = item;
+                if (key && value) {
+                    if (!this.statevalues.has(key) && !this.extravalues.has(key) && COMMON_PROPS.indexOf(key) === -1) {
+                        this.statevalues.set(key, value);
+                    }
+                }
+            }
+        }
+        else {
+            for (const key of Object.keys(statevalues)) {
+                this.statevalues.set(key, (statevalues as any)[key]);
             }
         }
     }
